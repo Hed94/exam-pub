@@ -2,13 +2,16 @@ package com.example.tavern.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 public class User {
     private final UUID id;
     private final String name;
-    private final boolean isActive;
-    private final int pocket;
+    private boolean isActive;
+    private int pocket;
+    private Set<Order> orders;
 
     public User(@JsonProperty("id") UUID id,
                 @JsonProperty("name")String name,
@@ -18,6 +21,7 @@ public class User {
         this.name = name;
         this.isActive = isActive;
         this.pocket = pocket;
+        orders = new HashSet<Order>();
     }
 
     public UUID getId() {
@@ -32,7 +36,23 @@ public class User {
         return isActive;
     }
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public int getPocket() {
         return pocket;
+    }
+
+    public void setPocket(int pocket) {
+        this.pocket = pocket;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }
