@@ -1,4 +1,4 @@
-package com.example.tavern.model;
+package com.example.tavern.other;
 
 public class Error extends Exception {
     public Error(String errorMessage) {

@@ -1,5 +1,6 @@
 package com.example.tavern.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class User {
     private boolean isAdult;
     private int pocket;
     @OneToMany(mappedBy="user")
+    @JsonIgnoreProperties("user")
     private Set<OrderedProducts> orderedProducts;
 
     public User() {

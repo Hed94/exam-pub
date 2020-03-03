@@ -1,14 +1,9 @@
 package com.example.tavern.api;
 
-import com.example.tavern.model.Product;
 import com.example.tavern.model.Request;
 import com.example.tavern.service.OrderedProductsService;
-import com.example.tavern.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityNotFoundException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/buy")

@@ -7,6 +7,7 @@ import com.example.tavern.model.OrderedProducts;
 import com.example.tavern.model.Product;
 import com.example.tavern.model.Request;
 import com.example.tavern.model.User;
+import com.example.tavern.other.Load;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class OrderedProductsService {
         Optional<User> optionalUser = userRepository.findById(request.getUserID());
         User user;
         if (optionalUser.isPresent()){
-            user = populateUser(optionalUser.get());
+            user = Load.populateUser(optionalUser.get());
         }
         else
         {
@@ -36,7 +37,7 @@ public class OrderedProductsService {
         Optional<Product> optionalProduct = productRepository.findById(request.getProductID());
         Product product;
         if (optionalProduct.isPresent()){
-            product = populateProduct(optionalProduct.get());
+            product = Load.populateProduct(optionalProduct.get());
         }
         else
         {
@@ -57,25 +58,5 @@ public class OrderedProductsService {
         orderedProductsRepository.save(order);
         user.setPocket(user.getPocket()-(request.getAmount()*product.getPrice()));
         userRepository.save(user);
-    }
-
-    private User populateUser(final User user){
-        User userData = new User();
-        userData.setId(user.getId());
-        userData.setName(user.getName());
-        userData.setActive(user.isActive());
-        userData.setAdult(user.isAdult());
-        userData.setPocket(user.getPocket());
-        userData.setOrderedProducts(user.getOrderedProducts());
-        return  userData;
-    }
-
-    private Product populateProduct(final Product product){
-        Product productData = new Product();
-        productData.setId(product.getId());
-        productData.setProductName(product.getProductName());
-        productData.setIsForAdult(product.getIsForAdult());
-        productData.setPrice(product.getPrice());
-        return  productData;
     }
 }
