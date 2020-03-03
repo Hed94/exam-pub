@@ -1,7 +1,9 @@
 package com.example.tavern.model;
 
+import com.example.tavern.other.Views;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,13 +13,19 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.UsersWithoutOrders.class)
     private long id;
+    @JsonView(Views.UsersWithoutOrders.class)
     private String name;
+    @JsonView(Views.UsersWithoutOrders.class)
     private boolean isActive;
+    @JsonView(Views.UsersWithoutOrders.class)
     private boolean isAdult;
+    @JsonView(Views.UsersWithoutOrders.class)
     private int pocket;
     @OneToMany(mappedBy="user")
     @JsonIgnoreProperties("user")
+    @JsonView(Views.Summary.class)
     private Set<OrderedProducts> orderedProducts;
 
     public User() {
@@ -26,7 +34,7 @@ public class User {
     public User(@JsonProperty("id") long id,
                 @JsonProperty("name")String name,
                 @JsonProperty("isActive")boolean isActive,
-                @JsonProperty("isActive")boolean isAdult,
+                @JsonProperty("isAdult")boolean isAdult,
                 @JsonProperty("pocket")int pocket) {
         this.id = id;
         this.name = name;

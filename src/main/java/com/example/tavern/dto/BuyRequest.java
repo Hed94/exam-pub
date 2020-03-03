@@ -1,15 +1,15 @@
-package com.example.tavern.model;
+package com.example.tavern.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Request {
+public class BuyRequest {
     private long userID;
     private long productID;
     private int amount;
 
-    public Request(@JsonProperty("userID") long userID,
-                   @JsonProperty("productID") long productID,
-                   @JsonProperty("amount") int amount) {
+    public BuyRequest(@JsonProperty("userID") long userID,
+                      @JsonProperty("productID") long productID,
+                      @JsonProperty("amount") int amount) {
         this.userID = userID;
         this.productID = productID;
         this.amount = amount;

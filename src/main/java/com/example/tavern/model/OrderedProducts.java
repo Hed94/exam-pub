@@ -1,6 +1,8 @@
 package com.example.tavern.model;
 
+import com.example.tavern.other.Views;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 
@@ -8,12 +10,17 @@ import javax.persistence.*;
 public class OrderedProducts{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.All.class)
     private long id;
     @ManyToOne
+    @JsonIgnoreProperties("orderedProducts")
+    @JsonView(Views.Summary.class)
     private Product product;
     @ManyToOne
     @JsonIgnoreProperties("orderedProducts")
+    @JsonView(Views.Summary.class)
     private User user;
+    @JsonView(Views.Summary.class)
     private int amount;
 
     public OrderedProducts() {

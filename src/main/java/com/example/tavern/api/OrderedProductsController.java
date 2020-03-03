@@ -1,6 +1,6 @@
 package com.example.tavern.api;
 
-import com.example.tavern.model.Request;
+import com.example.tavern.dto.BuyRequest;
 import com.example.tavern.service.OrderedProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +17,11 @@ public class OrderedProductsController {
     }
 
     @PostMapping
-    public void buyProduct(@RequestBody Request request)
+    public void buyProduct(@RequestBody BuyRequest buyRequest)
     {
         try
         {
-            orderedProductsService.buyProduct(request);
+            orderedProductsService.buyProduct(buyRequest);
         }
         catch (Error exc)
         {

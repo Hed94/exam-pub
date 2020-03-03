@@ -20,8 +20,9 @@ public class Load
         Product productData = new Product();
         productData.setId(product.getId());
         productData.setProductName(product.getProductName());
-        productData.setIsForAdult(product.getIsForAdult());
+        productData.isForAdult(product.getIsForAdult());
         productData.setPrice(product.getPrice());
+        productData.setOrderedProducts(product.getOrderedProducts());
         return  productData;
     }
 }
