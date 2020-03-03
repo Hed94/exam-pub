@@ -2,25 +2,22 @@ package com.example.tavern.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final UUID id;
+    private final long id;
     private final String name;
     private boolean isActive;
     private int pocket;
-    private Set<Order> orders;
+    @ManyToMany
+    private Set<OrderedProducts> orderedProducts;
 
-    public User(@JsonProperty("id") UUID id,
+    public User(@JsonProperty("id") long id,
                 @JsonProperty("name")String name,
                 @JsonProperty("isActive")boolean isActive,
                 @JsonProperty("pocket")int pocket) {
@@ -28,10 +25,10 @@ public class User {
         this.name = name;
         this.isActive = isActive;
         this.pocket = pocket;
-        orders = new HashSet<Order>();
+        orderedProducts = new HashSet<>();
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
@@ -55,11 +52,11 @@ public class User {
         this.pocket = pocket;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
+    public Set<OrderedProducts> getOrderedProducts() {
+        return orderedProducts;
     }
 
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setOrderedProducts(Set<OrderedProducts> orderedProducts) {
+        this.orderedProducts = orderedProducts;
     }
 }
