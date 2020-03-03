@@ -7,5 +7,5 @@ public class Views {
 
     public static class Summary extends UsersWithoutOrders{};
 
-    public static class All extends UsersWithoutOrders{};
+    public static class All extends Summary{};
 }
