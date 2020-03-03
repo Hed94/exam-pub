@@ -1,7 +1,13 @@
 package com.example.tavern.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Order {
+    @Id
     private Product product;
+    @Id
     private User user;
     private int amount;
 
