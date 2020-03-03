@@ -1,25 +1,37 @@
 package com.example.tavern.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.io.Serializable;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 
 @Entity
-public class OrderedProducts implements Serializable {
+public class OrderedProducts{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     @ManyToOne
     private Product product;
-    @Id
     @ManyToOne
+    @JsonIgnoreProperties("orderedProducts")
     private User user;
     private int amount;
 
-    public OrderedProducts(Product product, User user, int amount) {
+    public OrderedProducts() {
+    }
+
+    public OrderedProducts(long id, Product product, User user, int amount) {
+        this.id = id;
         this.product = product;
         this.user = user;
         this.amount = amount;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Product getProduct() {
@@ -44,19 +56,5 @@ public class OrderedProducts implements Serializable {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OrderedProducts)) return false;
-        OrderedProducts orderedProducts = (OrderedProducts) o;
-        return getProduct().equals(orderedProducts.getProduct()) &&
-                getUser().equals(orderedProducts.getUser());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getProduct(), getUser());
     }
 }

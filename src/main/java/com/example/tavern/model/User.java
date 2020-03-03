@@ -10,12 +10,15 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final long id;
-    private final String name;
+    private long id;
+    private String name;
     private boolean isActive;
     private int pocket;
-    @ManyToMany
+    @OneToMany(mappedBy="user")
     private Set<OrderedProducts> orderedProducts;
+
+    public User() {
+    }
 
     public User(@JsonProperty("id") long id,
                 @JsonProperty("name")String name,
