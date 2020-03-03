@@ -17,6 +17,6 @@ public interface OrderedProductsRepository extends JpaRepository<OrderedProducts
             "(SUM(ordered_products.amount) * product.price ) as summaryPrice" +
             " from ordered_products inner join product ON ordered_products.product_id = product.id" +
             " GROUP BY ordered_products.product_id", nativeQuery = true)
-    List<SummaryAll> sumAmount();
+    List<SummaryAll> SummaryAll();
 
 }

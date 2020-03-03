@@ -28,7 +28,7 @@ public class SummaryService
 
     public List<SummaryAll> getAll()
     {
-        return orderedProductsRepository.sumAmount();
+        return orderedProductsRepository.SummaryAll();
     }
 
     public User getSummaryOfUser(long id)
