@@ -19,8 +19,7 @@ public class OrderedProducts{
     public OrderedProducts() {
     }
 
-    public OrderedProducts(long id, Product product, User user, int amount) {
-        this.id = id;
+    public OrderedProducts(Product product, User user, int amount) {
         this.product = product;
         this.user = user;
         this.amount = amount;
